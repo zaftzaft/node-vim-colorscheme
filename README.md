@@ -13,6 +13,16 @@
   });
 ```
 
+## API
++ vimcs.init(options, callback)
+  + `options` -
+    + `useCache` - default: `false`
+    + `cachePath` - default: `./vimcs`
++ vimcs(colorName, option, attr)
+  + `colorName` - highlight name. e.g. `String`, `Function`. See more, in Vim :highlight commands
+  + `option` - `fg` or `bg`. default: both
+  + `attr` - `boolean`. default: `false`
+
 ## Todo
 + ~~basic API~~
 + support iojs and node v0.12 (use spawnSync)
