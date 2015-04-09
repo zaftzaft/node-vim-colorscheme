@@ -6,7 +6,14 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "",
+  "keywords": [
+    "vim",
+    "color",
+    "colors",
+    "cli"
+  ],
+  "repository": "https://github.com/zaftzaft/node-vim-colorscheme.git",
+  "author": "@zaftzaft",
   "license": "MIT",
   "dependencies": {
     "temp": "^0.8.1"

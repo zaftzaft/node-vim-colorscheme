@@ -1,5 +1,10 @@
 # node-vim-colorscheme
 
+## Installation
+```bash
+$ npm i node-vim-colorscheme
+```
+
 ## Usage
 ```js
   var vimcs = require("node-vim-colorscheme");
