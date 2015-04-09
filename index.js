@@ -83,7 +83,7 @@ var parse = function(data){
 };
 
 
-module.exports = function(colorName, option){
+module.exports = function(colorName, option, attr){
   var dummy = function(s){return s;};
   var gen = function(c){
     return function(s){
@@ -102,6 +102,23 @@ module.exports = function(colorName, option){
   }
   var fg = /^\d+$/.test(c.ctermfg) ? gen("\x1b[38;5;" + c.ctermfg + "m") : dummy;
   var bg = /^\d+$/.test(c.ctermbg) ? gen("\x1b[48;5;" + c.ctermbg + "m") : dummy;
+
+  if(attr){
+    [
+      [/bold/,      "\x1b[1m"],
+      [/underline/, "\x1b[4m"],
+      [/reverse/,   "\x1b[7m"],
+      [/inverse/,   "\x1b[7m"],
+      [/standout/,  "\x1b[1;4m"]
+    ].forEach(function(x){
+      if(x[0].test(c.cterm)){
+        var g = gen(x[1]);
+        fg = compose(fg, g);
+        bg = compose(bg, g);
+      }
+    });
+  }
+
   if(option === "fg"){
     return fg;
   }
