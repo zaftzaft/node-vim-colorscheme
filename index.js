@@ -114,3 +114,4 @@ module.exports = function(colorName, option){
 };
 
 module.exports.init = init;
+module.exports.colors = colors;
