@@ -6,8 +6,11 @@ var colors = {};
 var reHi = /^([\w]+)\s+xxx\s+(.+)$/;
 var reLink = /^links to ([\w]+)$/;
 
-var rediHi = function(filePath, callback){
-  var vim = spawn("vim", ["-e", "+redi! > " + filePath, "+hi", "+q!"], {
+var rediHi = function(filePath, callback, option){
+  var args = ["-e", ];
+  args = args.concat(option);
+  args.push("+redi! > " + filePath, "+hi", "+q!");
+  var vim = spawn("vim", args, {
     stdio: [
       process.stdin,
       process.stdout,
@@ -21,10 +24,13 @@ var rediHi = function(filePath, callback){
 };
 
 var init = function(options, callback){
-  options = {
-    useCache: options.useCache || false,
-    cachePath: options.cachePath || "./vimcs"
-  };
+  options = options || {};
+  options.useCache = options.useCache || false;
+  options.cachePath = options.cachePath || "./vimcs";
+  var addcmd = [];
+  if(options.filetype){
+    addcmd.push("+e x." + options.filetype);
+  }
 
   var readCache = function(){
     fs.readFile(options.cachePath, "utf8", function(err, data){
@@ -39,7 +45,7 @@ var init = function(options, callback){
         readCache();
       }
       else{
-        rediHi(options.cachePath, readCache);
+        rediHi(options.cachePath, readCache, addcmd);
       }
     });
   }
@@ -51,7 +57,7 @@ var init = function(options, callback){
         temp.cleanup();
         callback();
       });
-    });
+    }, addcmd);
   });
 };
 
