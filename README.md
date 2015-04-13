@@ -29,5 +29,4 @@ $ npm i node-vim-colorscheme
   + `attr` - `boolean`. default: `false`
 
 ## Todo
-+ ~~basic API~~
 + support iojs and node v0.12 (use spawnSync)
