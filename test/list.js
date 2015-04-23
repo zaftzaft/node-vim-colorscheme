@@ -2,7 +2,7 @@ var vimcs = require("../");
 
 vimcs.init({
   useCache: false,
-  filetype: "js"
+  filetype: process.argv[2] || "js"
 }, function(){
   Object.keys(vimcs.colors).forEach(function(name){
     vimcs.colors[name].ctermfg && console.log(

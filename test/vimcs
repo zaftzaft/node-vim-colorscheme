@@ -2,13 +2,14 @@
 SpecialKey     xxx ctermfg=237 guifg=Cyan
 NonText        xxx ctermfg=237 gui=bold guifg=Blue
 Directory      xxx ctermfg=110 guifg=Cyan
-ErrorMsg       xxx term=standout cterm=standout ctermfg=234 ctermbg=167 guifg=White guibg=Red
+ErrorMsg       xxx term=standout cterm=standout ctermfg=234 ctermbg=167 guifg=White
+                   guibg=Red
 IncSearch      xxx term=reverse cterm=reverse gui=reverse
 Search         xxx ctermfg=234 ctermbg=221 guifg=Black guibg=Yellow
 MoreMsg        xxx ctermfg=143 gui=bold guifg=SeaGreen
 ModeMsg        xxx ctermfg=143 gui=bold
 LineNr         xxx ctermfg=237 guifg=Yellow
-CursorLineNr   xxx term=bold cterm=bold ctermfg=221 gui=bold guifg=Yellow
+CursorLineNr   xxx ctermfg=221 gui=bold guifg=Yellow
 Question       xxx ctermfg=143 gui=bold guifg=Green
 StatusLine     xxx term=reverse cterm=reverse ctermfg=243 ctermbg=234 gui=bold,reverse
 StatusLineNC   xxx term=reverse cterm=reverse ctermfg=236 ctermbg=243 gui=reverse
@@ -26,15 +27,20 @@ DiffDelete     xxx ctermfg=234 ctermbg=167 gui=bold guifg=Blue guibg=DarkCyan
 DiffText       xxx ctermfg=234 ctermbg=110 gui=bold guibg=Red
 SignColumn     xxx ctermbg=234 guifg=Cyan guibg=Grey
 Conceal        xxx ctermfg=7 ctermbg=242 guifg=LightGrey guibg=DarkGrey
-SpellBad       xxx term=underline cterm=underline ctermfg=167 ctermbg=52 gui=undercurl guisp=Red
-SpellCap       xxx term=underline cterm=underline ctermfg=110 ctermbg=17 gui=undercurl guisp=Blue
-SpellRare      xxx term=underline cterm=underline ctermfg=139 ctermbg=53 gui=undercurl guisp=Magenta
-SpellLocal     xxx term=underline cterm=underline ctermfg=109 ctermbg=24 gui=undercurl guisp=Cyan
+SpellBad       xxx term=underline cterm=underline ctermfg=167 ctermbg=52 gui=undercurl
+                   guisp=Red
+SpellCap       xxx term=underline cterm=underline ctermfg=110 ctermbg=17 gui=undercurl
+                   guisp=Blue
+SpellRare      xxx term=underline cterm=underline ctermfg=139 ctermbg=53 gui=undercurl
+                   guisp=Magenta
+SpellLocal     xxx term=underline cterm=underline ctermfg=109 ctermbg=24 gui=undercurl
+                   guisp=Cyan
 Pmenu          xxx ctermfg=250 ctermbg=237 guibg=Magenta
 PmenuSel       xxx term=reverse cterm=reverse ctermfg=250 ctermbg=237 guibg=DarkGrey
 PmenuSbar      xxx ctermbg=248 guibg=Grey
 PmenuThumb     xxx ctermbg=15 guibg=White
-TabLine        xxx term=reverse cterm=reverse ctermfg=250 ctermbg=234 gui=underline guibg=DarkGrey
+TabLine        xxx term=reverse cterm=reverse ctermfg=250 ctermbg=234 gui=underline
+                   guibg=DarkGrey
 TabLineSel     xxx term=bold cterm=bold gui=bold
 TabLineFill    xxx term=reverse cterm=reverse gui=reverse
 CursorColumn   xxx ctermbg=235 guibg=Grey40
@@ -55,7 +61,8 @@ Structure      xxx ctermfg=109
 Special        xxx ctermfg=143 guifg=Orange
 Underlined     xxx ctermfg=110 gui=underline guifg=#80a0ff
 Ignore         xxx guifg=bg
-Error          xxx term=underline cterm=underline ctermfg=167 ctermbg=52 guifg=White guibg=Red
+Error          xxx term=underline cterm=underline ctermfg=167 ctermbg=52 guifg=White
+                   guibg=Red
 Todo           xxx ctermfg=193 guifg=Blue guibg=Yellow
 qfLineNr       xxx ctermfg=221
 diffRemoved    xxx links to Constant
@@ -80,3 +87,82 @@ SpecialChar    xxx links to Special
 Delimiter      xxx links to Special
 SpecialComment xxx links to Special
 Debug          xxx links to Special
+shebang        xxx links to Comment
+javaScriptSource xxx links to Special
+javaScriptIdentifier xxx links to Identifier
+javaScriptOperator xxx links to Operator
+javaScriptBoolean xxx links to Boolean
+javaScriptNull xxx links to Type
+javaScriptMessage xxx links to Keyword
+javaScriptGlobal xxx links to Constant
+javaScriptDeprecated xxx links to Exception
+javaScriptConditional xxx links to Conditional
+javaScriptRepeat xxx links to Repeat
+javaScriptBranch xxx links to Conditional
+javaScriptLabel xxx links to Label
+javaScriptPrototype xxx links to Type
+javaScriptStatement xxx links to Statement
+javaScriptGlobalObjects xxx links to Special
+javaScriptExceptions xxx links to Special
+javaScriptReserved xxx links to Keyword
+javaScriptCommentTodo xxx links to Todo
+javaScriptLineComment xxx links to Comment
+javaScriptCommentSkip xxx cleared
+javaScriptComment xxx links to Comment
+javaScriptDocTags xxx links to Special
+jsInJsdocExample xxx cleared
+javaScriptDocComment xxx links to Comment
+javaScriptDocParam xxx links to Function
+javaScriptDocSeeTag xxx links to Function
+javaScriptSpecial xxx links to Special
+javaScriptString xxx links to String
+javaScriptSpecialCharacter xxx cleared
+javaScriptNumber xxx links to Number
+javaScriptRegexpString xxx links to String
+javaScriptFloat xxx links to Number
+javaScriptBrowserObjects xxx links to Constant
+javaScriptDOMObjects xxx links to Constant
+javaScriptDOMMethods xxx links to Type
+javaScriptDOMProperties xxx links to Label
+javaScriptAjaxObjects xxx links to Constant
+javaScriptAjaxProperties xxx links to Label
+javaScriptAjaxMethods xxx links to Type
+javaScriptPropietaryObjects xxx links to Constant
+javaScriptPropietaryMethods xxx cleared
+javaScriptHtmlElemProperties xxx links to Label
+javaScriptEventListenerKeywords xxx links to Type
+javaScriptEventListenerMethods xxx cleared
+javaScriptWebAPI xxx links to Type
+javaScriptDomErrNo xxx links to Error
+javaScriptDomNodeConsts xxx links to Constant
+javaScriptHtmlEvents xxx links to Constant
+javaScriptParen xxx cleared
+javaScriptCssStyles xxx links to Type
+javaScriptDomElemAttrs xxx links to Label
+javaScriptDomElemFuncs xxx links to Type
+javaScriptHtmlElemAttrs xxx links to Label
+javaScriptHtmlElemFuncs xxx links to Type
+javaScriptFuncKeyword xxx links to Function
+javaScriptDotNotation xxx cleared
+javaScriptFuncArg xxx links to Special
+javaScriptFuncEq xxx links to Operator
+javaScriptFuncExp xxx links to Title
+javaScriptParens xxx links to Operator
+javaScriptFuncComma xxx links to Operator
+javaScriptFuncDef xxx links to PreProc
+javaScriptBraces xxx links to Function
+javaScriptOpSymbols xxx links to Operator
+javaScriptEndColons xxx links to Operator
+javaScriptLogicSymbols xxx links to Boolean
+javaScriptCharacter xxx links to Character
+javaScriptError xxx links to Error
+javaScriptParensError xxx links to Error
+javaScriptParensErrA xxx links to Error
+javaScriptParensErrB xxx links to Error
+javaScriptParensErrC xxx links to Error
+javaScriptBracket xxx cleared
+javaScriptBlock xxx cleared
+javaScriptParenError xxx cleared
+Snip           xxx links to SpecialComment
+nodejsKeyword  xxx links to Keyword
+jsFunction     xxx links to Identifier
