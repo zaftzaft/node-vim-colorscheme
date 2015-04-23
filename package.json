@@ -1,6 +1,6 @@
 {
   "name": "node-vim-colorscheme",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "can use vim color schemes",
   "main": "index.js",
   "scripts": {
