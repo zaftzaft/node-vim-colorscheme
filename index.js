@@ -1,15 +1,33 @@
-var fs    = require("fs");
-var spawn = require("child_process").spawn;
-var temp  = require("temp").track();
+var fs            = require("fs");
+var child_process = require("child_process");
+var spawn         = child_process.spawn;
+var spawnSync     = child_process.spawnSync;
+var temp          = require("temp").track();
 
 var colors = {};
 var reHi = /^([\w]+)\s+xxx\s+(.+)$/;
 var reLink = /^links to ([\w]+)$/;
 
-var rediHi = function(filePath, callback, option){
-  var args = ["-e", ];
-  args = args.concat(option);
+
+var buildArgs = function(filePath, options){
+  var args = ["-e"];
+  if(options.filetype){
+    args.push("+e x." + options.filetype);
+  }
   args.push("+redi! > " + filePath, "+hi", "+q!");
+  return args;
+};
+
+
+var buildOption = function(options){
+  options = options || {};
+  options.useCache = options.useCache || false;
+  options.cachePath = options.cachePath || "./vimcs";
+  return options;
+};
+
+
+var rediHi = function(args, callback){
   var vim = spawn("vim", args, {
     stdio: [
       process.stdin,
@@ -23,14 +41,20 @@ var rediHi = function(filePath, callback, option){
   return vim;
 };
 
+
+var rediHiSync = function(args){
+  spawnSync("vim", args, {
+    stdio: [
+      process.stdin,
+      process.stdout,
+      process.stderr
+    ]
+  });
+};
+
+
 var init = function(options, callback){
-  options = options || {};
-  options.useCache = options.useCache || false;
-  options.cachePath = options.cachePath || "./vimcs";
-  var addcmd = [];
-  if(options.filetype){
-    addcmd.push("+e x." + options.filetype);
-  }
+  options = buildOption(options);
 
   var readCache = function(){
     fs.readFile(options.cachePath, "utf8", function(err, data){
@@ -45,20 +69,43 @@ var init = function(options, callback){
         readCache();
       }
       else{
-        rediHi(options.cachePath, readCache, addcmd);
+        rediHi(buildArgs(options.cachePath, options), readCache);
       }
     });
   }
 
   temp.open("", function(err, info){
-    rediHi(info.path, function(){
+    rediHi(buildArgs(info.path, options), function(){
       fs.readFile(info.path, "utf8", function(err, data){
         parse(data);
         temp.cleanup();
         callback();
       });
-    }, addcmd);
+    });
   });
+};
+
+
+var initSync = function(options){
+  options = buildOption(options);
+  var readCache = function(){
+    parse(fs.readFileSync(options.cachePath, "utf8"));
+  };
+  if(options.useCache){
+    if(fs.existsSync(options.cachePath)){
+      readCache();
+    }
+    else{
+      rediHiSync(buildArgs(options.cachePath, options));
+      readCache();
+    }
+  }
+  else{
+    var tempPath = temp.openSync("").path;
+    rediHiSync(buildArgs(tempPath, options));
+    parse(fs.readFileSync(tempPath, "utf8"));
+    temp.cleanupSync();
+  }
 };
 
 var parse = function(data){
@@ -136,5 +183,7 @@ module.exports = function(colorName, option, attr){
   }
 };
 
+
 module.exports.init = init;
+module.exports.initSync = initSync;
 module.exports.colors = colors;
